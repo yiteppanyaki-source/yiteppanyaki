@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="邑鐵板燒 Yi Teppanyaki｜台中東區30年老字號鐵板燒。1993年創立，堅持每日新鮮食材，老師傅精湛火候技藝。台中市東區大智路63號。">
+  <meta name="keywords" content="台中鐵板燒,台中東區鐵板燒,台中老字號鐵板燒,大智路鐵板燒,邑鐵板燒,Yi Teppanyaki,1993年,30年老店,台中美食">
+  <title>邑鐵板燒 Yi Teppanyaki｜台中東區30年老字號</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1410;
+      --ash: #2d2620;
+      --ember: #c4621a;
+      --gold: #d4a843;
+      --cream: #f5f0e8;
+      --parchment: #ede5d4;
+      --smoke: #8a7d6b;
+      --white: #fdfaf5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family: 'Noto Serif TC', serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 110%, rgba(196,98,26,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 20%, rgba(212,168,67,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 0%, rgba(196,98,26,0.06) 0%, transparent 60%);
+    }
+
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,0.02) 80px),
+        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.02) 80px);
+    }
+
+    .flame-particle {
+      position: absolute;
+      border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+      animation: flicker linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes flicker {
+      0%   { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.6; }
+      50%  { transform: translateY(-120px) scale(0.7) rotate(15deg); opacity: 0.3; }
+      100% { transform: translateY(-240px) scale(0.2) rotate(30deg); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+
+    .hero-title {
+      font-size: clamp(5rem, 18vw, 14rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.6s forwards;
+    }
+
+    .hero-title span {
+      color: var(--ember);
+      display: inline-block;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(253,250,245,0.6);
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.9s forwards;
+    }
+
+    .hero-year {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 1s 1.2s forwards;
+    }
+
+    .hero-year::before, .hero-year::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .hero-year span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 1s 1.8s forwards;
+    }
+
+    .scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--smoke);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(26,20,16,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(212,168,67,0.15);
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo span { color: var(--ember); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: rgba(253,250,245,0.7);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      color: var(--ember);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--ember);
+      opacity: 0.5;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    /* ── STORY ── */
+    .story-section {
+      background: var(--parchment);
+      max-width: 100%;
+      padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 8rem);
+    }
+
+    .story-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .story-text p {
+      font-size: 1.05rem;
+      line-height: 2;
+      color: var(--ash);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .story-text p strong {
+      color: var(--ember);
+      font-weight: 600;
+    }
+
+    .story-visual {
+      position: relative;
+    }
+
+    .story-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(8rem, 18vw, 16rem);
+      font-weight: 300;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(196,98,26,0.2);
+      line-height: 1;
+      text-align: center;
+      user-select: none;
+    }
+
+    .story-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .story-badge-main {
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--ember);
+      display: block;
+    }
+
+    .story-badge-sub {
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      color: var(--smoke);
+    }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(196,98,26,0.15);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ember), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+
+    .feature-card:hover { border-color: rgba(196,98,26,0.4); transform: translateY(-4px); }
+    .feature-card:hover::before { transform: scaleX(1); }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--ink);
+    }
+
+    .feature-desc {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--smoke);
+      font-weight: 300;
+    }
+
+    /* ── MENU ── */
+    .menu-section {
+      background: var(--ink);
+      max-width: 100%;
+      padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 8rem);
+      color: var(--white);
+    }
+
+    .menu-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .menu-section .section-label { color: var(--gold); }
+    .menu-section .section-label::after { background: var(--gold); }
+    .menu-section .section-title { color: var(--white); }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-top: 3rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .menu-category {
+      padding: 2.5rem;
+      background: var(--ink);
+    }
+
+    .menu-category-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(212,168,67,0.2);
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .menu-item:last-child { border-bottom: none; }
+
+    .menu-item-name {
+      font-size: 0.95rem;
+      color: rgba(253,250,245,0.85);
+      font-weight: 300;
+    }
+
+    .menu-item-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--ember);
+      font-style: italic;
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    .menu-note {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(212,168,67,0.2);
+      text-align: center;
+    }
+
+    .menu-note p {
+      font-size: 0.85rem;
+      color: var(--smoke);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── INFO ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .info-card {
+      padding: 2rem;
+      background: var(--parchment);
+    }
+
+    .info-card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: var(--ember);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .info-card-content {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--ash);
+      font-weight: 300;
+    }
+
+    .info-card-content strong {
+      display: block;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--ember);
+      max-width: 100%;
+      padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+    }
+
+    .cta-inner { max-width: 700px; margin: 0 auto; }
+
+    .cta-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .cta-sub {
+      font-size: 1rem;
+      color: rgba(253,250,245,0.8);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 2.5rem;
+      background: var(--white);
+      color: var(--ember);
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ash);
+      padding: 3rem clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-logo span { color: var(--ember); }
+
+    .footer-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      color: var(--smoke);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .footer-info {
+      font-size: 0.85rem;
+      color: var(--smoke);
+      line-height: 2;
+      font-weight: 300;
+    }
+
+    .footer-copy {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: rgba(138,125,107,0.5);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .story-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .story-visual { order: -1; }
+      .features-grid { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo"><span>邑</span>鐵板燒</a>
+  <ul class="nav-links">
+    <li><a href="#story">關於我們</a></li>
+    <li><a href="#menu">菜單</a></li>
+    <li><a href="#info">資訊</a></li>
+    <li><a href="#contact">聯絡</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <!-- Flame particles -->
+  <div class="flame-particle" style="width:8px;height:14px;background:var(--ember);left:48%;bottom:15%;animation-duration:3.2s;animation-delay:0s;"></div>
+  <div class="flame-particle" style="width:6px;height:10px;background:var(--gold);left:51%;bottom:12%;animation-duration:2.8s;animation-delay:0.8s;"></div>
+  <div class="flame-particle" style="width:10px;height:16px;background:var(--ember);left:46%;bottom:18%;animation-duration:3.8s;animation-delay:1.4s;"></div>
+  <div class="flame-particle" style="width:5px;height:9px;background:#e88a3a;left:53%;bottom:10%;animation-duration:2.5s;animation-delay:0.4s;"></div>
+  <div class="flame-particle" style="width:7px;height:12px;background:var(--gold);left:49%;bottom:14%;animation-duration:3.5s;animation-delay:2s;"></div>
+
+  <div class="hero-content">
+    <p class="hero-en">Yi Teppanyaki · Est. 1993</p>
+    <h1 class="hero-title"><span>邑</span>鐵板燒</h1>
+    <p class="hero-subtitle">台中東區．三十年老字號</p>
+    <div class="hero-year">
+      <span>1993 — 2024</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- STORY -->
+<div class="story-section" id="story">
+  <div class="story-inner">
+    <div class="story-text reveal">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">三十年的<br>火候記憶</h2>
+      <p>1993年，邑鐵板燒在台中東區大智路悄然開業。那一塊燒得通紅的鐵板，承載的不只是食材，更是老師傅對料理的全部執著。</p>
+      <p>三十年過去，我們依然堅持<strong>每日前往建國市場</strong>採購最新鮮的海鮮與食材，堅持使用<strong>自家熬製的醬油</strong>與奶油調味，堅持讓每一位客人在鐵板前感受食物最真實的溫度。</p>
+      <p>不追流行、不做噱頭。<strong>邑鐵板燒的驕傲，藏在那一口老味道裡。</strong></p>
+    </div>
+    <div class="story-visual reveal">
+      <div class="story-number">30</div>
+      <div class="story-badge">
+        <span class="story-badge-main">30年</span>
+        <span class="story-badge-sub">老字號．台中東區</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <p class="section-label reveal">Why Yi</p>
+  <h2 class="section-title reveal">我們的堅持</h2>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <span class="feature-icon">🐟</span>
+      <h3 class="feature-title">每日新鮮食材</h3>
+      <p class="feature-desc">每天清晨親赴建國市場採購，海鮮、肉品當日進貨當日使用，拒絕隔夜食材。</p>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🔥</span>
+      <h3 class="feature-title">老師傅精湛火候</h3>
+      <p class="feature-desc">三十年淬鍊的掌火技藝，精準控制每一種食材的最佳熟度，鎖住食材的原始鮮甜。</p>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🫙</span>
+      <h3 class="feature-title">自家熬製醬料</h3>
+      <p class="feature-desc">秘製醬油與奶油醬汁，三十年如一日的老味道，也是老客人一再回訪的理由。</p>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<div class="menu-section" id="menu">
+  <div class="menu-inner">
+    <p class="section-label reveal">Menu</p>
+    <h2 class="section-title reveal">精選菜單</h2>
+    <div class="menu-grid reveal">
+      <div class="menu-category">
+        <h3 class="menu-category-title">套餐系列</h3>
+        <div class="menu-item"><span class="menu-item-name">基本套餐</span><span class="menu-item-price">$200 起</span></div>
+        <div class="menu-item"><span class="menu-item-name">雞腿排套餐</span><span class="menu-item-price">$280</span></div>
+        <div class="menu-item"><span class="menu-item-name">豬排套餐</span><span class="menu-item-price">$260</span></div>
+        <div class="menu-item"><span class="menu-item-name">牛排套餐</span><span class="menu-item-price">$380 起</span></div>
+        <div class="menu-item"><span class="menu-item-name">海陸特餐</span><span class="menu-item-price">$480 起</span></div>
+      </div>
+      <div class="menu-category">
+        <h3 class="menu-category-title">海鮮系列</h3>
+        <div class="menu-item"><span class="menu-item-name">鮮蝦套餐</span><span class="menu-item-price">$320</span></div>
+        <div class="menu-item"><span class="menu-item-name">干貝套餐</span><span class="menu-item-price">$380</span></div>
+        <div class="menu-item"><span class="menu-item-name">龍蝦套餐</span><span class="menu-item-price">時價</span></div>
+        <div class="menu-item"><span class="menu-item-name">綜合海鮮套餐</span><span class="menu-item-price">$450 起</span></div>
+      </div>
+      <div class="menu-category">
+        <h3 class="menu-category-title">甜點系列</h3>
+        <div class="menu-item"><span class="menu-item-name">鐵板煎香蕉</span><span class="menu-item-price">附餐選項</span></div>
+        <div class="menu-item"><span class="menu-item-name">煎芋頭餅</span><span class="menu-item-price">附餐選項</span></div>
+      </div>
+      <div class="menu-category">
+        <h3 class="menu-category-title">套餐皆附</h3>
+        <div class="menu-item"><span class="menu-item-name">例湯</span><span class="menu-item-price">✓</span></div>
+        <div class="menu-item"><span class="menu-item-name">白飯或炒飯</span><span class="menu-item-price">✓</span></div>
+        <div class="menu-item"><span class="menu-item-name">鐵板蔬菜</span><span class="menu-item-price">✓</span></div>
+        <div class="menu-item"><span class="menu-item-name">甜點</span><span class="menu-item-price">✓</span></div>
+      </div>
+    </div>
+    <div class="menu-note reveal">
+      <p>菜單內容及價格如有異動，以店內公告為準｜歡迎來電詢問當日特餐</p>
+    </div>
+  </div>
+</div>
+
+<!-- INFO -->
+<section id="info">
+  <p class="section-label reveal">Visit Us</p>
+  <h2 class="section-title reveal">來店資訊</h2>
+  <div class="info-grid reveal">
+    <div class="info-card">
+      <p class="info-card-label">營業時間</p>
+      <div class="info-card-content">
+        <strong>平日（週一、三、四、五、六）</strong>
+        午餐　11:30 – 14:30<br>
+        晚餐　17:00 – 21:00
+        <strong style="margin-top:1rem;">假日（週日）</strong>
+        11:30 – 21:00（不中斷）
+        <strong style="margin-top:1rem;">公休</strong>
+        每週二（遇假日順延）
+      </div>
+    </div>
+    <div class="info-card">
+      <p class="info-card-label">地址與交通</p>
+      <div class="info-card-content">
+        <strong>地址</strong>
+        台中市東區大智路63號
+        <strong style="margin-top:1rem;">鄰近地標</strong>
+        台中後火車站<br>
+        大魯閣新時代購物中心旁
+        <strong style="margin-top:1rem;">特約停車場</strong>
+        昶穎停車場（振興路1-1號）<br>
+        平日消費600元以上抵1小時<br>
+        假日消費1000元以上抵1小時
+      </div>
+    </div>
+    <div class="info-card">
+      <p class="info-card-label">聯絡方式</p>
+      <div class="info-card-content">
+        <strong>電話訂位</strong>
+        04-2221-6462
+        <strong style="margin-top:1rem;">外送外帶</strong>
+        歡迎來電洽詢<br>亦可透過外送平台訂購
+        <strong style="margin-top:1rem;">創立年份</strong>
+        1993年（民國82年）
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section" id="contact">
+  <div class="cta-inner">
+    <h2 class="cta-title reveal">立刻訂位<br>感受三十年的老味道</h2>
+    <p class="cta-sub reveal">台中東區大智路63號｜建議提前來電預約</p>
+    <a href="tel:0422216462" class="cta-btn reveal">
+      📞 04-2221-6462
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>邑</span>鐵板燒</div>
+  <div class="footer-en">Yi Teppanyaki · Taichung</div>
+  <div class="footer-info">
+    台中市東區大智路63號　|　04-2221-6462<br>
+    週一三四五六　午餐 11:30-14:30　晚餐 17:00-21:00　|　週日 11:30-21:00　|　週二公休
+  </div>
+  <div class="footer-copy">© 2024 Yi Teppanyaki. Est. 1993.</div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
